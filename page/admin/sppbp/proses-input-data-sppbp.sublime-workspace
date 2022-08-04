@@ -1,0 +1,301 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"strto",
+				"strtoupper"
+			],
+			[
+				"kd",
+				"kd_supplier"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "proses-input-data-sppbp.php",
+			"settings":
+			{
+				"buffer_size": 1851,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "form-entry-data-sppbp.php",
+			"settings":
+			{
+				"buffer_size": 11171,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/packaging-development/page/admin/sppbp/proses-entry-data-sppbp.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/sppbp/form-entry-data-sppbp.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/ajax-produk.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/data-karyawan/ajax-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/koneksi.php",
+		"/C/xampp/htdocs/packaging-development/ajax-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/data-karyawan/proses-edit-data-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/packshoot/proses-upload-foto.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/packshoot/tampil-gambar.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/menu-utama-admin.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/packshoot/form-input-foto1.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/form-entry-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/list-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/form-edit-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/proses-edit-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/proses-hapus-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/proses-input-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/pdf-data-produk1.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/supplier/pdf-data-supplier.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/tampil-pdf.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/packshoot/hapus-data-galeri.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/data-karyawan/form-entry-data-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/data-karyawan/form-edit-data-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/packshoot/form-edit-data-galeri.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/sppbp/list-data-sppbp.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/user/list-data-user.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/cari-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/form-entry-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/form-edit-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/user/form-edit-data-user.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/data-karyawan/list-data-karyawan.php",
+		"/C/xampp/htdocs/packaging-development/login/login-form.php",
+		"/C/xampp/htdocs/packaging-development/system/logout.php",
+		"/C/xampp/htdocs/packaging-development/login/cek_login.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/list-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/page/admin/produk/pdf-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/fpdf.php",
+		"/C/xampp/htdocs/packaging-development/index.php",
+		"/C/xampp/htdocs/packaging-development/fpdf.css",
+		"/C/xampp/htdocs/packaging-development/menu-utama.php",
+		"/E/SKRIPSI/htdocs/packaging-development/login/proses-login.php",
+		"/C/xampp/htdocs/packaging-development/form-entry-data-produk.php",
+		"/C/xampp/htdocs/packaging-development/menu-utama-administrasi.php",
+		"/C/xampp/htdocs/packaging-development/form-input-data-karyawan111.php",
+		"/C/xampp/htdocs/packaging-development/entry data produk.png",
+		"/E/SKRIPSI/db_packdev.sql",
+		"/C/xampp/htdocs/packdev/form-input-data-karyawan.php",
+		"/C/xampp/htdocs/packdev/menu-utama.php",
+		"/C/xampp/htdocs/packdev/cari-data-produk.php",
+		"/C/xampp/htdocs/packdev/form-input-data-produk.php",
+		"/C/xampp/phpMyAdmin/config.inc.php",
+		"/C/xampp/htdocs/packdev/form-edit-data-produk.php",
+		"/C/xampp/htdocs/packdev/form-edit-data-karyawan.php"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "proses-input-data-sppbp.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								50,
+								8
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "form-entry-data-sppbp.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11171,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4384,
+								4384
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4590.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "proses-input-data-sppbp.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

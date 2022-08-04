@@ -1,0 +1,54 @@
+.jumbotron {
+	background : cover;
+	background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;	
+}
+
+img.kiri {
+    float: right;
+    margin: 5px;
+}
+
+.table-box
+{
+	width: 100%;
+	height: 300px;
+	overflow-y: auto;
+	background: #fff;
+	box-shadow: 0 10px 100px rgba(0,0,0,0,5);
+}
+
+table, th
+{
+	border: 1px solid #005277;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+th
+{
+	position: sticky;
+	top: 0;
+	background-color: #00bcd4;
+	color: #fff;
+	box-sizing: border-box;
+}
+
+tr th:nth-child(1)
+{
+	width: 60px;
+	text-align: center;
+	background : #03707d;
+}
+
+table, td	
+{
+	border: 1px;	
+	text-align: left;
+}
+
+
+
+
