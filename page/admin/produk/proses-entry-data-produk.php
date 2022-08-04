@@ -20,11 +20,17 @@ if (isset($_POST['simpan'])) {
 
 	$file_temp = $_FILES['artwork']['tmp_name']; //data temp yang di upload
 	$folder    = "../../../pdf/"; //folder tujuan
+	if (!file_exists($folder)) {
+		mkdir($folder, 0777, true);
+	}
 	move_uploaded_file($file_temp, "$folder/$nama_baru"); //fungsi upload
 
 
 	$file_temp1 = $_FILES['gambar']['tmp_name']; //data temp yang di upload
 	$folder1    = "../../../jpg/"; //folder tujuan
+	if (!file_exists($folder1)) {
+		mkdir($folder1, 0777, true);
+	}
 	move_uploaded_file($file_temp1, "$folder1/$nama_gambar"); //fungsi upload
 
 	echo "<script>alert('Data Produk Berhasil disimpan ke database');document.location='data-produk.php'</script>";
@@ -38,7 +44,14 @@ if (isset($_POST['simpan'])) {
 		$nama_baru = $kd . ".pdf";
 		$file_temp = $_FILES['artwork']['tmp_name']; //data temp yang di upload
 		$folder    = "../../../pdf/"; //folder tujuan
-		unlink($folder . $nama_baru); // hapus data pdf sebelumnya
+
+		if (file_exists($folder . $nama_baru)) {
+			unlink($folder . $nama_baru); // hapus data pdf sebelumnya
+		}
+
+		if (!file_exists($folder)) {
+			mkdir($folder, 0777, true);
+		}
 		move_uploaded_file($file_temp, "$folder/$nama_baru"); //fungsi upload
 	}
 
@@ -46,7 +59,13 @@ if (isset($_POST['simpan'])) {
 		$nama_gambar = $kd . ".jpg";
 		$file_temp1 = $_FILES['gambar']['tmp_name']; //data temp yang di upload
 		$folder1    = "../../../jpg/"; //folder tujuan
-		unlink($folder1 . $nama_gambar); // hapus data gambar sebelumnya
+		if (file_exists($folder1 . $nama_gambar)) {
+			unlink($folder1 . $nama_gambar); // hapus data gambar sebelumnya
+		}
+
+		if (!file_exists($folder1)) {
+			mkdir($folder1, 0777, true);
+		}
 		move_uploaded_file($file_temp1, "$folder1/$nama_gambar"); //fungsi upload
 	}
 	$supplier = $_POST['kd-supplier'];
@@ -69,8 +88,13 @@ if (isset($_POST['simpan'])) {
 	$perintah2 = "SELECT * FROM tb_produk WHERE kd_produk='$del'"; //wuery untuk pilih db dulu
 	$a = @mysqli_query($db, $perintah2); //simpan query ke variabel $a
 	$b = mysqli_fetch_array($a); //selanjutnya pecah data dan simpan ke variabel $b
-	unlink('../../../pdf/' . $b['artwork']);
-	unlink('../../../jpg/' . $b['gambar']); //sekarang jalankan perintah unlink untuk hapus gambar dari folder, ambil data dan dkd_produkepannya ditambahkan paramter tempatt dimana folder gambar tersimpan
+
+	if (file_exists('../../../pdf/' . $b['artwork'])) {
+		unlink('../../../pdf/' . $b['artwork']);
+	}
+	if (file_exists('../../../jpg/' . $b['gambar'])) {
+		unlink('../../../jpg/' . $b['gambar']); //sekarang jalankan perintah unlink untuk hapus gambar dari folder, ambil data dan dkd_produkepannya ditambahkan paramter tempatt dimana folder gambar tersimpan
+	}
 	$del2 = @mysqli_query($db, $perintah1); //query untuk mendelete data di database
 
 	if ($del2) {
