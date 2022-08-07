@@ -253,6 +253,94 @@ if (!isset($_SESSION['user_id'])) {
         </div>
       </div>
 
+      <!-- view detail -->
+      <div class="modal fade" id="modalDetailKaryawan" tabindex="-1" aria-labelledby="modalDetailKaryawanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalDetailKaryawanLabel">Detail karyawan</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="p-4 pt-2">
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">NIK</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="nik_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Nama</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="nama_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Email</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="email_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Tanggal Lahir</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="tgl_lahir_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Gender</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="gender_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Alamat</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="alamat_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">No Telepon</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="no_tlp_detail"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-between">
+                    <label class="fw-bold">Jabatan</label>
+                    <label class="fw-bold">:</label>
+                  </div>
+                  <div class="col-md-8">
+                    <span id="jabatan_detail"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <br>
   </div>
@@ -292,9 +380,7 @@ if (!isset($_SESSION['user_id'])) {
               <th>NIK</th>
               <th>Nama Karyawan</th>
               <th>Jabatan</th>
-              <?php if ($_SESSION['level'] == "Manager") { ?>
-                <th>Tindakan</th>
-              <?php } ?>
+              <th>Tindakan</th>
             </tr>
           </thead>
           <tbody>
@@ -328,12 +414,13 @@ if (!isset($_SESSION['user_id'])) {
               echo "<td>" . $row['nik'] . "</td>";
               echo "<td>" . $row['nama_karyawan'] . "</td>";
               echo "<td>" . $row['jabatan'] . "</td>";
+              echo "<td class='text-center'>";
+              echo "<button class='btn btn-info btn-sm me-2' data-item='" . json_encode($row) . "' onclick='lihatData(this)'>Detail</button>";
               if ($_SESSION['level'] == "Manager") {
-                echo "<td>";
                 echo "<button class='btn btn-warning btn-sm me-2' data-item='" . json_encode($row) . "' onclick='updateData(this)'>Edit</button>";
                 echo "<a class='btn btn-danger btn-sm' href='proses-entry-data-karyawan.php?nik=" . $row['nik'] . "'onClick=\"return confirm('Anda yakin akan menghapus data ?')\">Hapus</a>";
-                echo "</td>";
               }
+              echo "</td>";
               echo "</tr>";
             }
 
@@ -378,6 +465,21 @@ if (!isset($_SESSION['user_id'])) {
       document.getElementById('no_tlp_edit').value = item.no_telp;
 
       $('#modalUpdateKaryawan').modal('show');
+    }
+
+    function lihatData(obj) {
+      let item = $(obj).data('item');
+
+      document.getElementById('nik_detail').innerHTML = item.nik;
+      document.getElementById('nama_detail').innerHTML = item.nama_karyawan;
+      document.getElementById('jabatan_detail').innerHTML = item.jabatan;
+      document.getElementById('email_detail').innerHTML = item.email;
+      document.getElementById('tgl_lahir_detail').innerHTML = item.tgl_lahir;
+      document.getElementById('gender_detail').innerHTML = item.gender == 'L' ? 'Laki-laki' : 'Perempuan';
+      document.getElementById('alamat_detail').innerHTML = item.alamat ? item.alamat : '-';
+      document.getElementById('no_tlp_detail').innerHTML = item.no_telp ? item.no_telp : '-';
+
+      $('#modalDetailKaryawan').modal('show');
     }
   </script>
   <!-- Option 2: Separate Popper and Bootstrap JS -->

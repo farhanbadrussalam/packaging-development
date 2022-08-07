@@ -95,6 +95,20 @@ $dtSppbp = mysqli_fetch_assoc($query);
 				<form action="proses-input-data-sppbp.php" method="post">
 					<div class="row mb-2">
 						<div class="col-md-4">
+							<label for="kd-produk">Kode Produk</label>
+							<input type="text" name="kd_produk" id="kd-produk" value="<?= $dtSppbp['kd_produk'] ?>" onkeyup="searchProduk(this)" class="form-control">
+						</div>
+						<div class="col-md-4">
+							<label for="nama_produk">Nama Produk</label>
+							<input type="text" id="nama_produk" class="form-control" value="<?= $dtSppbp['nama_produk'] ?>" readonly required>
+						</div>
+						<div class="col-md-4">
+							<label for="bahan_kemas">Bahan Kemas</label>
+							<input type="text" id="bahan_kemas" class="form-control" value="<?= $dtSppbp['bahan_kemas'] ?>" readonly>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
 							<label for="kode-sppbp">Kode SPPBP</label>
 							<input type="text" name="kode-sppbp" id="kode-sppbp" class="form-control" placeholder="Masukan Kode SPPPBP" value="<?= $dtSppbp['kd_sppbp'] ?>" readonly>
 						</div>
@@ -115,20 +129,6 @@ $dtSppbp = mysqli_fetch_assoc($query);
 						<div class="col-md-4">
 							<label for="jabatan">Jabatan</label>
 							<input type="text" id="jabatan" class="form-control" value="<?= $dtSppbp['jabatan'] ?>" readonly>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="col-md-4">
-							<label for="kd-produk">Kode Produk</label>
-							<input type="text" name="kd_produk" id="kd-produk" value="<?= $dtSppbp['kd_produk'] ?>" onkeyup="searchProduk(this)" class="form-control">
-						</div>
-						<div class="col-md-4">
-							<label for="nama_produk">Nama Produk</label>
-							<input type="text" id="nama_produk" class="form-control" value="<?= $dtSppbp['nama_produk'] ?>" readonly required>
-						</div>
-						<div class="col-md-4">
-							<label for="bahan_kemas">Bahan Kemas</label>
-							<input type="text" id="bahan_kemas" class="form-control" value="<?= $dtSppbp['bahan_kemas'] ?>" readonly>
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -163,14 +163,6 @@ $dtSppbp = mysqli_fetch_assoc($query);
 						<div class="col-md-4">
 							<label for="ukuran">Ukuran</label>
 							<input type="text" name="ukur" id="ukuran" class="form-control" value="<?= $dtSppbp['ukuran'] ?>" placeholder="Masukan Ukuran">
-						</div>
-						<div class="col-md-4">
-							<label for="lem">Keretakan Lem</label>
-							<input type="text" name="lem" id="lem" class="form-control" value="<?= $dtSppbp['kerekatan_lem'] ?>" placeholder="Hasil keretakan lem">
-						</div>
-						<div class="col-md-4">
-							<label for="lockbottom">Kondisi Lockbottom</label>
-							<input type="text" name="lockbottom" id="lockbottom" value="<?= $dtSppbp['kondisi_lockbottom'] ?>" class="form-control" placeholder="Masukan Kondisi">
 						</div>
 					</div>
 					<div class="row mb-2">

@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_id'])) {
               </li>
               <li><a class="dropdown-item" href="../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
             </ul>
-
+          </li>
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="tentang.php">TENTANG</a>
@@ -69,22 +69,17 @@ if (!isset($_SESSION['user_id'])) {
               AKUN
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../../index.php" onclick="return confirm('Apakah anda yakin ingin melakukan Switch User ?')">Ganti User</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Keluar Aplikasi</a></li>
+              <li><a class="dropdown-item" href="../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a></li>
             </ul>
+          </li>
         </ul>
       </div>
-    </div>
     </div>
   </nav>
   <div class="jumbotron">
     <div class="container">
       <br>
       <br><br><br>
-      <img class="kiri" src="../../image/logo combiphar ungu.png" width="250px" />
       <h1 class="display-4">TENTANG KAMI</h1>
 
       <p class="lead"></p>
@@ -116,14 +111,14 @@ if (!isset($_SESSION['user_id'])) {
                         <img src="../../image/Joint Fit 4.png" class="d-block w-100" alt="...">
                       </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
-                    </button>
+                    </button> -->
                   </div>
                 </tr>
               </table>

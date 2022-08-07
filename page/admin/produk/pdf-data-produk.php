@@ -43,23 +43,25 @@ for ($i = 1; $i <= 40; $i++)
 
     $pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(26, 6, 'KODE PRODUK', 1, 0);
-$pdf->Cell(55, 6, 'NAMA PRODUK', 1, 0);
+$pdf->Cell(35, 6, 'NAMA PRODUK', 1, 0);
 $pdf->Cell(30, 6, 'BENTUK SEDIAAN', 1, 0);
 $pdf->Cell(26, 6, 'KATEGORI OBAT', 1, 0);
 $pdf->Cell(28, 6, 'BAHAN KEMAS', 1, 0);
-$pdf->Cell(25, 6, 'KODE SUPPLIER', 1, 1);
+$pdf->Cell(25, 6, 'KODE SUPPLIER', 1, 0);
+$pdf->Cell(25, 6, 'KODE SPPBP', 1, 1);
 
 $pdf->SetFont('Arial', '', 7);
 
 include("../../../system/koneksi.php");
-$produk = mysqli_query($db, "SELECT * FROM tb_produk");
+$produk = mysqli_query($db, "SELECT tb_produk.*, tb_sppbp.kd_sppbp FROM tb_produk LEFT JOIN tb_sppbp ON tb_sppbp.kd_produk = tb_produk.kd_produk");
 while ($row = mysqli_fetch_array($produk)) {
     $pdf->Cell(26, 6, $row['kd_produk'], 1, 0);
-    $pdf->Cell(55, 6, $row['nama_produk'], 1, 0);
+    $pdf->Cell(35, 6, $row['nama_produk'], 1, 0);
     $pdf->Cell(30, 6, $row['bentuk_sediaan'], 1, 0);
     $pdf->Cell(26, 6, $row['kategori_produk'], 1, 0);
     $pdf->Cell(28, 6, $row['bahan_kemas'], 1, 0);
-    $pdf->Cell(25, 6, $row['kd_supplier'], 1, 1);
+    $pdf->Cell(25, 6, $row['kd_supplier'], 1, 0);
+    $pdf->Cell(25, 6, $row['kd_sppbp'], 1, 1);
 }
 
 $pdf->Output();

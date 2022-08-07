@@ -14,8 +14,6 @@ if (isset($_POST['simpan'])) {
 	$warna = $_POST['wrn'];
 	$bobot = $_POST['bbt'];
 	$ukuran = $_POST['ukur'];
-	$lem = $_POST['lem'];
-	$lockbottom = $_POST['lockbottom'];
 	$abrasi = $_POST['abrasi'];
 	$kondisi = $_POST['kondisi-pengemas'];
 	$prosedur = $_POST['prosedur'];
@@ -37,8 +35,6 @@ if (isset($_POST['simpan'])) {
 	warna, 
 	bobot, 
 	ukuran, 
-	kerekatan_lem, 
-	kondisi_lockbottom, 
 	abrasi_test, 
 	kondisi_pengemas, 
 	prosedur_pemeriksaan, 
@@ -59,8 +55,6 @@ if (isset($_POST['simpan'])) {
 	'$warna',
 	'$bobot',
 	'$ukuran',
-	'$lem',
-	'$lockbottom',
 	'$abrasi',
 	'$kondisi',
 	'$prosedur',
@@ -90,8 +84,6 @@ if (isset($_POST['simpan'])) {
 	$warna = $_POST['wrn'];
 	$bobot = $_POST['bbt'];
 	$ukuran = $_POST['ukur'];
-	$lem = $_POST['lem'];
-	$lockbottom = $_POST['lockbottom'];
 	$abrasi = $_POST['abrasi'];
 	$kondisi = $_POST['kondisi-pengemas'];
 	$prosedur = $_POST['prosedur'];
@@ -110,8 +102,6 @@ if (isset($_POST['simpan'])) {
 	warna 					='$warna',
 	bobot 					='$bobot',
 	ukuran 					='$ukuran',
-	kerekatan_lem 			='$lem',
-	kondisi_lockbottom		='$lockbottom',
 	abrasi_test 			='$abrasi',
 	kondisi_pengemas 		='$kondisi',
 	prosedur_pemeriksaan 	='$prosedur',

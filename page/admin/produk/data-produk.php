@@ -336,7 +336,7 @@ include "../../../system/koneksi.php";
           <!-- Button trigger modal -->
           <?php if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "Designer") { ?>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahProduk">
-              Tambah user
+              Tambah Produk
             </button>
             <a href="pdf-data-produk.php" class="btn btn-secondary">Cetak Laporan</a>
           <?php } ?>
@@ -366,6 +366,7 @@ include "../../../system/koneksi.php";
               <th>Supplier</th>
               <th>Artwork</th>
               <th>Packshot</th>
+              <th>SPPBP</th>
               <?php if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "Designer") { ?>
                 <th>Tindakan</th>
               <?php } ?>
@@ -408,6 +409,22 @@ include "../../../system/koneksi.php";
 
               echo "<td><a class='text-decoration-none' href='tampil-pdf.php?kd_produk=" . $row['kd_produk'] . "'>" . $row['artwork'] . "</a></td>";
               echo "<td><a class='text-decoration-none' href='tampil-gambar.php?kd_produk=" . $row['kd_produk'] . "'>" . $row['gambar'] . "</a></td>";
+
+              $sqlSppbp = "SELECT * FROM tb_sppbp where kd_produk = '" . $row['kd_produk'] . "'";
+              $sppbp = mysqli_query($db, $sqlSppbp);
+              $dtSppbp = mysqli_fetch_assoc($sppbp);
+
+              echo "<td class='text-center'>";
+              if ($dtSppbp) {
+                echo "<a target='_blank' href='../sppbp/pdf-data-sppbp.php?kd_sppbp=" . $dtSppbp['kd_sppbp'] . "' class='text-decoration-none'>" . $dtSppbp['kd_sppbp'] . "</a>";
+              } else {
+                if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") {
+                  echo "<a class='btn btn-primary btn-sm' href='../sppbp/form-input-data-sppbp.php?kd_produk=" . $row['kd_produk'] . "'>Tambah SPPBP</a>";
+                } else {
+                  echo "&nbsp;";
+                }
+              }
+              echo "</td>";
               if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "Designer") {
                 echo "<td class='text-center'>";
                 echo "<button class='btn btn-warning btn-sm mb-2 me-2' data-item='" . json_encode($row) . "' onclick='updateData(this)'>Edit</button>";

@@ -110,8 +110,22 @@ if (!isset($_SESSION['user_id'])) {
         <form action="proses-input-data-sppbp.php" method="post">
           <div class="row mb-2">
             <div class="col-md-4">
+              <label for="kd-produk">Kode Produk</label>
+              <input type="text" name="kd_produk" id="kd-produk" onkeyup="searchProduk(this.value)" class="form-control" autofocus required>
+            </div>
+            <div class="col-md-4">
+              <label for="nama_produk">Nama Produk</label>
+              <input type="text" name="nama_produk" id="nama_produk" class="form-control" readonly required>
+            </div>
+            <div class="col-md-4">
+              <label for="bahan_kemas">Bahan Kemas</label>
+              <input type="text" id="bahan_kemas" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-4">
               <label for="kode-sppbp">Kode SPPBP</label>
-              <input type="text" name="kode-sppbp" id="kode-sppbp" class="form-control" placeholder="Masukan Kode SPPPBP" autofocus required>
+              <input type="text" name="kode-sppbp" id="kode-sppbp" class="form-control" placeholder="Masukan Kode SPPPBP" required>
             </div>
             <div class="col-md-4">
               <label for="tgl">Tanggal input SPPBP</label>
@@ -121,7 +135,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="nik">NIK</label>
-              <input type="number" name="nik" id="nik" onkeyup="searchNIK(this)" class="form-control">
+              <input type="number" name="nik" id="nik" onkeyup="searchNIK(this.value)" class="form-control">
             </div>
             <div class="col-md-4">
               <label for="nama_karyawan">Nama Karyawan</label>
@@ -130,20 +144,6 @@ if (!isset($_SESSION['user_id'])) {
             <div class="col-md-4">
               <label for="jabatan">Jabatan</label>
               <input type="text" id="jabatan" class="form-control" readonly>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-md-4">
-              <label for="kd-produk">Kode Produk</label>
-              <input type="text" name="kd_produk" id="kd-produk" onkeyup="searchProduk(this)" class="form-control">
-            </div>
-            <div class="col-md-4">
-              <label for="nama_produk">Nama Produk</label>
-              <input type="text" name="nama_produk" id="nama_produk" class="form-control" readonly required>
-            </div>
-            <div class="col-md-4">
-              <label for="bahan_kemas">Bahan Kemas</label>
-              <input type="text" id="bahan_kemas" class="form-control" readonly>
             </div>
           </div>
           <div class="row mb-2">
@@ -178,14 +178,6 @@ if (!isset($_SESSION['user_id'])) {
             <div class="col-md-4">
               <label for="ukuran">Ukuran</label>
               <input type="text" name="ukur" id="ukuran" class="form-control" placeholder="Masukan Ukuran">
-            </div>
-            <div class="col-md-4">
-              <label for="lem">Keretakan Lem</label>
-              <input type="text" name="lem" id="lem" class="form-control" placeholder="Hasil keretakan lem">
-            </div>
-            <div class="col-md-4">
-              <label for="lockbottom">Kondisi Lockbottom</label>
-              <input type="text" name="lockbottom" id="lockbottom" class="form-control" placeholder="Masukan Kondisi">
             </div>
           </div>
           <div class="row mb-2">
@@ -239,8 +231,21 @@ if (!isset($_SESSION['user_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-      function searchNIK(val) {
-        const nik = val.value;
+      let kd_produk = '<?= isset($_GET['kd_produk']) ? $_GET['kd_produk'] : '0'; ?>'
+      let nikKaryawan = '<?= $_SESSION['nik'] ?>';
+
+
+      if (kd_produk != '0') {
+        document.getElementById('kd-produk').value = kd_produk;
+        searchProduk(kd_produk);
+      }
+
+      if (nikKaryawan) {
+        document.getElementById('nik').value = nikKaryawan;
+        searchNIK(nikKaryawan);
+      }
+
+      function searchNIK(nik) {
         $.ajax({
           url: '../../../page/admin/data-karyawan/ajax-karyawan.php',
           data: {
@@ -258,8 +263,7 @@ if (!isset($_SESSION['user_id'])) {
         });
       }
 
-      function searchProduk(val) {
-        const kd_produk = val.value;
+      function searchProduk(kd_produk) {
         $.ajax({
           url: '../../../page/admin/produk/ajax-produk.php',
           data: {
@@ -272,11 +276,13 @@ if (!isset($_SESSION['user_id'])) {
             $('#bahan_kemas').val(json.bahan_kemas);
             $('#kd_supplier').val(json.kd_supplier);
             $('#nama_supplier').val(json.supplier);
+            $('#kode-sppbp').val(kd_produk.substr(0, kd_produk.length - 7))
           } else {
             $('#nama_produk').val('');
             $('#bahan_kemas').val('');
             $('#kd_supplier').val('');
             $('#nama_supplier').val('');
+            $('#kode-sppbp').val('');
           }
         });
       }

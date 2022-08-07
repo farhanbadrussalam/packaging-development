@@ -137,12 +137,7 @@ include("../../../system/koneksi.php");
             <th>Supplier</th>
             <th>Artwork</th>
             <th>Packshot</th>
-
-            <!--kodisi biar admin keluar user lainnya dihide-->
-            <?php if ($_SESSION['level'] == 'Manager' || $_SESSION['level'] == 'SPV') { ?>
-              <th>Tindakan</th>
-            <?php }
-            ?>
+            <th>Tindakan</th>
           </tr>
         </thead>
         <tbody>
@@ -183,13 +178,13 @@ include("../../../system/koneksi.php");
             echo "<td>" . $sppbp['kd_supplier'] . "</td>";
             echo "<td><a class='text-decoration-none' href='../produk/tampil-pdf.php?kd_produk=" . $sppbp['kd_produk'] . "'>" . $sppbp['artwork'] . "</a></td>";
             echo "<td><a class='text-decoration-none' href='../produk/tampil-gambar.php?kd_produk=" . $sppbp['kd_produk'] . "'>" . $sppbp['gambar'] . "</a></td>";
+            echo "<td class='text-center'>";
+            echo "<a href='pdf-data-sppbp.php?kd_sppbp=" . $sppbp['kd_sppbp'] . "' class='btn btn-sm me-2 btn-secondary'>Cetak</a>";
             if ($_SESSION['level'] == 'Manager' || $_SESSION['level'] == 'SPV') {
-              echo "<td>";
-              echo "<a href='pdf-data-sppbp.php?kd_sppbp=" . $sppbp['kd_sppbp'] . "' class='btn btn-sm me-2 btn-secondary'>Cetak</a>";
               echo "<a href='form-update-data-sppbp.php?kd_sppbp=" . $sppbp['kd_sppbp'] . "' class='btn btn-warning btn-sm me-2' >Edit</a>";
               echo "<a class='btn btn-danger btn-sm me-2' href='proses-input-data-sppbp.php?kd_sppbp=" . $sppbp['kd_sppbp'] . "'onClick=\"return confirm('Anda yakin akan menghapus data ?')\">Hapus</a>";
-              echo "</td>";
             }
+            echo "</td>";
             echo "</tr>";
           }
 

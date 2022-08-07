@@ -124,7 +124,7 @@ include("../../../system/koneksi.php");
                 <div class="row mb-2">
                   <div class="col-md-6">
                     <label for="nik">NIK</label>
-                    <input type="text" class="form-control" name="nik" id="nik" required>
+                    <input type="text" class="form-control" name="nik" onkeyup="searchNIK(this)" id="nik" required>
                   </div>
                   <div class="col-md-6">
                     <label for="user_id">USER ID</label>
@@ -284,7 +284,7 @@ include("../../../system/koneksi.php");
             echo "<td>" . $user['nama_karyawan'] . "</td>";
             echo "<td>" . $user['level'] . "</td>";
             if ($_SESSION['level'] == "Manager") {
-              echo "<td>";
+              echo "<td class='text-center'>";
               echo "<button class='btn btn-warning btn-sm me-2' data-item='" . json_encode($user) . "' onclick='updateData(this)'>Edit</button>";
               echo "<a class='btn btn-danger btn-sm' href='../user/proses-input-data-user.php?user_id=" . $user['user_id'] . "' onClick=\"return confirm('Anda yakin akan menghapus data ?')\">Hapus</a>";
               echo "</td>";
@@ -322,6 +322,23 @@ include("../../../system/koneksi.php");
         document.getElementById('pwd_edit').value = item.pwd;
 
         $('#modalUpdateUser').modal('show');
+      }
+
+      function searchNIK(val) {
+        const nik = val.value;
+        $.ajax({
+          url: '../data-karyawan/ajax-karyawan.php',
+          data: {
+            nik: nik
+          },
+        }).success(function(data) {
+          if (data) {
+            const json = JSON.parse(data);
+            $('#nama_karyawan').val(json.nama_karyawan);
+          } else {
+            $('#nama_karyawan').val('');
+          }
+        });
       }
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->

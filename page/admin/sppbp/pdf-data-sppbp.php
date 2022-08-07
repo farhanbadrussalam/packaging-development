@@ -125,10 +125,6 @@ while ($row = mysqli_fetch_array($sppbp)) {
     $pdf->Cell(145, 6, $row['bobot'], 1, 1, 'L');
     $pdf->Cell(40, 6, 'UKURAN', 1, 0, 'L');
     $pdf->Cell(145, 6, $row['ukuran'], 1, 1, 'L');
-    $pdf->Cell(40, 6, 'KEREKATAN LEM', 1, 0, 'L');
-    $pdf->Cell(145, 6, $row['kerekatan_lem'], 1, 1, 'L');
-    $pdf->Cell(40, 6, 'KONDISI LOCKBOTTOM', 1, 0, 'L');
-    $pdf->Cell(145, 6, $row['kondisi_lockbottom'], 1, 1, 'L');
     $pdf->Cell(40, 6, 'ABRASI TEST', 1, 0, 'L');
     $pdf->Cell(145, 6, $row['abrasi_test'], 1, 1, 'L');
     $pdf->Cell(40, 6, 'KONDISI PENGEMAS', 1, 0, 'L');

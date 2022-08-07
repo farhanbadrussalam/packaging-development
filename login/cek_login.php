@@ -21,10 +21,9 @@ if($cek > 0){
 	// buat session login dan username
 	$_SESSION['user_id'] = $username;
 	$_SESSION['level'] = $data['level'];
+	$_SESSION['nik'] = $data['nik'];
 	// alihkan ke halaman dashboard admin
 	header("location:../page/admin/menu-utama-admin.php");
 }else{
 	header("location:../index.php?pesan=User ID atau Password yang Anda Masukkan Salah!");
 }
- 
-?>
