@@ -1,286 +1,278 @@
-<p align=right><?php
-$tanggal= mktime(date("m"),date("d"),date("Y"));
-echo "Tanggal : <b>".date("d/M/Y", $tanggal)."</b> ";
-date_default_timezone_set('Asia/Jakarta');
-$jam=date("H:i:s");
-echo "| Pukul : <b>". $jam." "."</b>";
-$a = date ("H");
-if (($a>=6) && ($a<=11)){
-echo "<b>, Selamat Pagi !!</b>";
-}
-else if(($a>11) && ($a<=15))
-{
-echo ", Selamat Pagi !!";}
-else if (($a>15) && ($a<=18)){
-echo ", Selamat Siang !!";}
-else { echo ", <b> Selamat Malam </b>";}
-?> </p>
 <?php
-
-include ("../../../system/koneksi.php");
-
-// kalau tidak ada id di query string
-if( !isset($_GET['kd_sppbp']) ){
-    header('Location: list-data-sppbp.php');
+session_start();
+if (!isset($_SESSION['user_id'])) {
+	header("Location: index.php");
 }
+include("../../../system/koneksi.php");
 
-//ambil id dari query string
-$kdsppbp = $_GET['kd_sppbp'];
-
-// buat query untuk ambil data dari database
-$sql = "SELECT * FROM tb_sppbp WHERE kd_sppbp='$kdsppbp'";
+$sql = "SELECT * FROM tb_sppbp 
+		inner join tb_karyawan on tb_karyawan.nik = tb_sppbp.nik 
+		inner join tb_produk on tb_produk.kd_produk = tb_sppbp.kd_produk 
+		inner join tb_supplier on tb_supplier.kd_supplier = tb_produk.kd_supplier 
+		where kd_sppbp = '" . $_GET['kd_sppbp'] . "' ";
 $query = mysqli_query($db, $sql);
-$sppbp = mysqli_fetch_assoc($query);
-
-// jika data yang di-edit tidak ditemukan
-if( mysqli_num_rows($query) < 1 ){
-    die("data tidak ditemukan...");
-}
-
+$dtSppbp = mysqli_fetch_assoc($query);
 ?>
 
 <!DOCTYPE html>
- <html>
- <head>
- 	 <style>
-a, button,input[type=submit],input[type=reset],input[type=button] {
-    font-family: sans-serif;
-    font-size: 15px;
-    background: #22a4cf;
-    color: white;
-    border: white 3px solid;
-    border-radius: 5px;
-    padding: 12px 20px;
-    margin-top: 10px;
-}
-a {
-    text-decoration: none;
-}
-a:hover, button:hover, input[type=submit]:hover, input[type=reset]:hover{
-    opacity:0.9;
-}
-</style>
- 	<title>Formulir Update Data SPPBP  |  PACKDEV</title>
- </head>
+<html lang="en">
 
- <body>
- 	<header>
- 		<h3>Formulir Update Data Data</h3>
- 	</header>
+<head>
+	<link rel="stylesheet" type="text/css" href="../../../style/style-idp11.css">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
 
- 	<form action="proses-edit-sppbp.php" method="POST">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
- 		<fieldset>
+	<title>PACKAGING DEVELOPMENT - <?php echo strtoupper($_SESSION['level']); ?></title>
+	<style type="text/css">
+		* {
+			font-family: "Trebuchet MS";
+		}
 
- 			<table>
- 			
- 			<input type="hidden" name="kode-sppbp" value="<?php echo $sppbp['kd_sppbp'] ?>" />
+		h1 {
+			text-transform: uppercase;
+			color: salmon;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
- 			<tr>
-       			 	<td>Tanggal Input SPPBP</td>
-       				<td>:</td>
-       				<td><input type="text" name="tgl" value="<?php echo date('y/m/d');?>" /></td>
-   			 	</tr>
+</head>
 
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand" href="#page-top">PACKAGING DEVELOPMENT DEPARTMENT - LOGIN <?php echo strtoupper($_SESSION['level']); ?></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+				<ul class="navbar-nav navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link js-scroll-trigger" aria-current="page" href="../../../page/admin/menu-utama-admin.php"><strong>HOME</strong></a>
+					</li>
 
-   			 	<tr>
-       			 	<td>NIK</td>
-       				<td>:</td>
-       				<td><input type="text" name="nik" onkeyup="isi_otomatis()" id="nik" value="<?php echo $sppbp ['nik'] ?>"/>
-       				</td>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#akun" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							GUIDELINE KEMASAN
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-   			 	</tr>
+							<li><a class="dropdown-item" href="../../../guideline/GL ETICAL PRODUCT.pdf">PRODUK ETHICAL</a></li>
 
-   			 	<tr>
-       			 	<td>Nama</td>
-       				<td>:</td>
-       				<td><input type="text" name="nama_karyawan" id="nama_karyawan" value="<?php echo $sppbp ['nama_karyawan'] ?>" size="50" maxlength="50"/>
-       				</td>
-   			 	</tr>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="../../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="../../../page/admin/tentang.php">TENTANG</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#akun" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							AKUN
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="../../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-   			 	<tr>
-       			 	<td>Jabatan</td>
-       				<td>:</td>
-       				<td><input type="text" name="jabatan" id="jabatan" value="<?php echo $sppbp ['jabatan'] ?>" size="50" maxlength="50"/>
-       				</td>
-   			 	</tr>
+	<div class="jumbotron">
+		<div class="container">
+			<br>
+			<br><br><br>
+			<img class="kiri" src="../../../image/logo combiphar ungu.png" width="250px" />
 
-   			 	<tr>
-       			 	<td>Kode Produk</td>
-       				<td>:</td>
-       				 <td><input type="text" name="kd_produk" onkeyup="isi()" id="kd_produk" value="<?php echo $sppbp ['kd_produk'] ?>">
-              </td>
-   			 	</tr>
+			<h1 class="display-4">UPDATE DATA SPPBP</h1>
+			<hr class="my-4">
+			<div class="container overflow-hidden">
+				<form action="proses-input-data-sppbp.php" method="post">
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="kode-sppbp">Kode SPPBP</label>
+							<input type="text" name="kode-sppbp" id="kode-sppbp" class="form-control" placeholder="Masukan Kode SPPPBP" value="<?= $dtSppbp['kd_sppbp'] ?>" readonly>
+						</div>
+						<div class="col-md-4">
+							<label for="tgl">Tanggal input SPPBP</label>
+							<input type="text" name="tgl" id="tgl" class="form-control" value="<?= $dtSppbp['tanggal'] ?>" placeholder="Masukan Kode SPPPBP" readonly>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="nik">NIK</label>
+							<input type="number" name="nik" id="nik" onkeyup="searchNIK(this)" value="<?= $dtSppbp['nik'] ?>" class="form-control">
+						</div>
+						<div class="col-md-4">
+							<label for="nama_karyawan">Nama Karyawan</label>
+							<input type="text" id="nama_karyawan" class="form-control" value="<?= $dtSppbp['nama_karyawan'] ?>" readonly required>
+						</div>
+						<div class="col-md-4">
+							<label for="jabatan">Jabatan</label>
+							<input type="text" id="jabatan" class="form-control" value="<?= $dtSppbp['jabatan'] ?>" readonly>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="kd-produk">Kode Produk</label>
+							<input type="text" name="kd_produk" id="kd-produk" value="<?= $dtSppbp['kd_produk'] ?>" onkeyup="searchProduk(this)" class="form-control">
+						</div>
+						<div class="col-md-4">
+							<label for="nama_produk">Nama Produk</label>
+							<input type="text" id="nama_produk" class="form-control" value="<?= $dtSppbp['nama_produk'] ?>" readonly required>
+						</div>
+						<div class="col-md-4">
+							<label for="bahan_kemas">Bahan Kemas</label>
+							<input type="text" id="bahan_kemas" class="form-control" value="<?= $dtSppbp['bahan_kemas'] ?>" readonly>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="suhu">Suhu Simpan</label>
+							<input type="text" name="suhu" id="suhu" class="form-control" value="<?= $dtSppbp['penyimpanan'] ?>" placeholder="Masukan Suhu Simpan">
+						</div>
+						<div class="col-md-4">
+							<label for="metode">Metode Pemeriksaan</label>
+							<input type="text" name="metode" id="metode" class="form-control" value="<?= $dtSppbp['metode_pemeriksaan'] ?>" placeholder="Masukan Jenis Metode">
+						</div>
+						<div class="col-md-4">
+							<label for="bahan">Material</label>
+							<input type="text" name="bahan" id="bahan" class="form-control" value="<?= $dtSppbp['material'] ?>" placeholder="Masukan Jeniis Material">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="teks">Teks</label>
+							<input type="text" name="tek" id="teks" class="form-control" value="<?= $dtSppbp['teks'] ?>" placeholder="Masukan Teks">
+						</div>
+						<div class="col-md-4">
+							<label for="warna">Warna</label>
+							<input type="text" name="wrn" id="warna" class="form-control" value="<?= $dtSppbp['warna'] ?>" placeholder="Masukan Warna">
+						</div>
+						<div class="col-md-4">
+							<label for="bobot">Bobot</label>
+							<input type="text" name="bbt" id="bobot" class="form-control" value="<?= $dtSppbp['bobot'] ?>" placeholder="Masukan Bobot">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="ukuran">Ukuran</label>
+							<input type="text" name="ukur" id="ukuran" class="form-control" value="<?= $dtSppbp['ukuran'] ?>" placeholder="Masukan Ukuran">
+						</div>
+						<div class="col-md-4">
+							<label for="lem">Keretakan Lem</label>
+							<input type="text" name="lem" id="lem" class="form-control" value="<?= $dtSppbp['kerekatan_lem'] ?>" placeholder="Hasil keretakan lem">
+						</div>
+						<div class="col-md-4">
+							<label for="lockbottom">Kondisi Lockbottom</label>
+							<input type="text" name="lockbottom" id="lockbottom" value="<?= $dtSppbp['kondisi_lockbottom'] ?>" class="form-control" placeholder="Masukan Kondisi">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="abrasi">Abrasi test</label>
+							<input type="text" name="abrasi" id="abrasi" class="form-control" value="<?= $dtSppbp['abrasi_test'] ?>" placeholder="Masukan hasil test">
+						</div>
+						<div class="col-md-4">
+							<label for="prosedur">Prosedur Pemeriksaan</label>
+							<input type="text" name="prosedur" id="prosedur" class="form-control" value="<?= $dtSppbp['prosedur_pemeriksaan'] ?>" placeholder="Masukan Prosedur">
+						</div>
+						<div class="col-md-4">
+							<label for="kondisi-pengemas">Kondisi Pengemas</label>
+							<textarea name="kondisi-pengemas" id="kondisi-pengemas" cols="30" rows="3" class="form-control"><?= $dtSppbp['kondisi_pengemas'] ?></textarea>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="kritis">Penyimpangan Kritis</label>
+							<input type="text" name="kritis" id="kritis" class="form-control" value="<?= $dtSppbp['penyimpangan_kritis'] ?>" placeholder="Masukan Penyimpangan Kritis">
+						</div>
+						<div class="col-md-4">
+							<label for="major">Penyimpangan Major</label>
+							<input type="text" name="major" id="major" class="form-control" value="<?= $dtSppbp['penyimpangan_major'] ?>" placeholder="Masukan Penyimpangan Major">
+						</div>
+						<div class="col-md-4">
+							<label for="minor">Penyimpangan Minor</label>
+							<input type="text" name="minor" id="minor" class="form-control" value="<?= $dtSppbp['penyimpangan_minor'] ?>" placeholder="Masukan Penyimpangan Minor">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-4">
+							<label for="nama_supplier">Supplier</label>
+							<input type="hidden" name="kd_supplier" id="kd_supplier" class="form-control">
+							<input type="text" name="nama_supplier" id="nama_supplier" value="<?= $dtSppbp['nama_supplier'] ?>" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-6">
+							<button class="btn btn-primary" type="submit" name="update">Update</button>
+							<button class="btn btn-warning" type="reset">reset</button>
+							<a class="btn btn-secondary" href="data-sppbp.php">Kembali</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
-            <tr>
-              <td>Nama Produk</td>
-              <td>:</td>
-              <td><input type="text" name="nama_produk" id="nama_produk" value="<?php echo $sppbp ['nama_produk'] ?>" size="50" maxlength="50"/>
-              </td>
-          </tr>
+		<!-- Optional JavaScript; choose one of the two! -->
 
-   			 	<tr>
-       			 	<td>Bahan Kemas</td>
-       				<td>:</td>
-       				<td><input type="text" name="bahan_kemas" id="bahan_kemas" value="<?php echo $sppbp ['bahan_kemas'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-   			 	<tr>
-       			 	<td>Suhu Simpan</td>
-       				<td>:</td>
-       				<td><input type="text" name="suhu" value="<?php echo $sppbp ['penyimpanan'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
+		<script type="text/javascript">
+			function searchNIK(val) {
+				const nik = val.value;
+				$.ajax({
+					url: '../../../page/admin/data-karyawan/ajax-karyawan.php',
+					data: {
+						nik: nik
+					},
+				}).success(function(data) {
+					if (data) {
+						const json = JSON.parse(data);
+						$('#nama_karyawan').val(json.nama_karyawan);
+						$('#jabatan').val(json.jabatan);
+					} else {
+						$('#nama_karyawan').val('');
+						$('#jabatan').val('');
+					}
+				});
+			}
 
-   			 	<tr>
-       			 	<td>Metode Pemeriksaan</td>
-       				<td>:</td>
-       				<td><input type="text" name="metode" value="<?php echo $sppbp ['metode_pemeriksaan'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Material</td>
-       				<td>:</td>
-       				<td><input type="text" name="bahan" value="<?php echo $sppbp ['material'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Teks</td>
-       				<td>:</td>
-       				<td><input type="text" name="tek" value="<?php echo $sppbp ['teks'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Warna</td>
-       				<td>:</td>
-       				<td><input type="text" name="wrn" value="<?php echo $sppbp ['warna'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Bobot</td>
-       				<td>:</td>
-       				<td><input type="text" name="bbt" value="<?php echo $sppbp ['bobot'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Ukuran</td>
-       				<td>:</td>
-       				<td><input type="text" name="ukur" value="<?php echo $sppbp ['ukuran'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Kerekatan Lem</td>
-       				<td>:</td>
-       				<td><input type="text" name="lem" value="<?php echo $sppbp ['kerekatan_lem'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Kondisi Lockbottom</td>
-       				<td>:</td>
-       				<td><input type="text" name="lockbottom" value="<?php echo $sppbp ['kondisi_lockbottom'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Abrasi Test</td>
-       				<td>:</td>
-       				<td><input 
-
-       					type="text" 
-       					name="abrasi" 
-       					value="<?php echo $sppbp ['abrasi_test'] ?>" 
-       					size="50" maxlength="50"/>
-
-       				</td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Kondisi Pengemas</td>
-       				<td>:</td>
-       				<td><textarea 
-
-       					style="resize:vertical" 
-       					textarea cols="49" 
-       					rows="20" 
-       					name="kondisi-pengemas"        					
-       					><?php echo $sppbp ['kondisi_pengemas']?>
-       						
-       					</textarea></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Prosedur Pemeriksaan</td>
-       				<td>:</td>
-       				<td><input type="text" name="prosedur" value="<?php echo $sppbp ['prosedur_pemeriksaan'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Kode Supplier</td>
-       				<td>:</td>
-       				<td><input type="text" name="kd_supplier" id="kd_supplier" value="<?php echo $sppbp ['kd_supplier'] ?>"size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Penyimpangan Kritis</td>
-       				<td>:</td>
-       				<td><input type="text" name="kritis" value="<?php echo $sppbp ['penyimpangan_kritis'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Penyimpangan Major</td>
-       				<td>:</td>
-       				<td><input type="text" name="major" value="<?php echo $sppbp ['penyimpangan_major'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	<tr>
-       			 	<td>Penyimpangan Minor</td>
-       				<td>:</td>
-       				<td><input type="text" name="minor" value="<?php echo $sppbp ['penyimpangan_minor'] ?>" size="50" maxlength="50"/></td>
-   			 	</tr>
-
-   			 	</tbody>
-		</table>	
-   </fieldset>	
- <tr>
-        <input type="submit" value ="Simpan" name="simpan">
-      </tr>
-      
-       
-         <td><input type="button" value="Kembali" onclick="history.back(-1)" /></td> 
-         <tr>
-	</form>
-
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script type="text/javascript">
-            function isi_otomatis(){
-                var nik = $("#nik").val();
-                $.ajax({
-                    url: 'ajak.php',
-                    data:"nik="+nik ,
-                }).success(function (data) {
-                    var json = data,
-                    obj = JSON.parse(json);
-                    $('#nama_karyawan').val(obj.nama_karyawan);
-                    $('#jabatan').val(obj.jabatan);                  
-                });
-            }
-        </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script type="text/javascript">
-            function isi(){
-                var kd_produk = $("#kd_produk").val();
-                $.ajax({
-                    url: 'ajax-produk.php',
-                    data:"kd_produk="+kd_produk ,
-                }).success(function (data) {
-                    var json = data,
-                    obj = JSON.parse(json);  
-                    $('#nama_produk').val(obj.nama_produk);                 
-                    $('#bahan_kemas').val(obj.bahan_kemas);
-                    $('#kd_supplier').val(obj.kd_supplier);                  
-                }); 
-            }
-        </script>
-
+			function searchProduk(val) {
+				const kd_produk = val.value;
+				$.ajax({
+					url: '../../../page/admin/produk/ajax-produk.php',
+					data: {
+						kd_produk: kd_produk
+					},
+				}).success(function(data) {
+					if (data) {
+						const json = JSON.parse(data);
+						$('#nama_produk').val(json.nama_produk);
+						$('#bahan_kemas').val(json.bahan_kemas);
+						$('#kd_supplier').val(json.kd_supplier);
+						$('#nama_supplier').val(json.supplier);
+					} else {
+						$('#nama_produk').val('');
+						$('#bahan_kemas').val('');
+						$('#kd_supplier').val('');
+						$('#nama_supplier').val('');
+					}
+				});
+			}
+		</script>
+		<!-- Option 2: Separate Popper and Bootstrap JS -->
+		<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
 
 </body>
+
 </html>

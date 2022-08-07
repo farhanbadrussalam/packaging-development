@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_id'])) {
               </li>
               <li><a class="dropdown-item" href="../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
             </ul>
-
+          </li>
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="tentang.php">TENTANG</a>
@@ -69,15 +69,11 @@ if (!isset($_SESSION['user_id'])) {
               AKUN
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../../index.php" onclick="return confirm('Apakah anda yakin ingin melakukan Switch User ?')">Ganti User</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Keluar Aplikasi</a></li>
+              <li><a class="dropdown-item" href="../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a></li>
             </ul>
+          </li>
         </ul>
       </div>
-    </div>
     </div>
   </nav>
 
@@ -103,7 +99,7 @@ if (!isset($_SESSION['user_id'])) {
               </div>
             </strong>
             <!-- muted -->
-            <video loop autoplay="TRUE">
+            <video loop autoplay="TRUE" muted>
               <source src="../../video/TVC_InstoRedEyesDuniaTidakBerhenti.mp4" type="video/webm" padding="30px">
               Browsermu tidak mendukung tag ini, upgrade donk!
             </video>
@@ -122,124 +118,31 @@ if (!isset($_SESSION['user_id'])) {
             </strong>
             <?php //var_dump($_SESSION['level']); cek eror
             ?>
-            <?php if ($_SESSION['level'] == 'Manager') { ?>
+            <?php if ($_SESSION['level'] == 'Manager' || $_SESSION['level'] == 'SPV' || $_SESSION['level'] == 'Designer' || $_SESSION['level'] == 'Staff') { ?>
               <a href="../../page/admin/data-karyawan/data-karyawan.php">
                 <img src="../../image/list data karyawan.png" alt="Form Input Data Karyawan" style="width:157px">
               </a>
+            <?php } ?>
 
-              <a href="../../page/admin/produk/data-produk.php">
-                <img src="../../image/list data produk.png" alt="Form Input Data Barang" style="width:157px">
+            <a href="../../page/admin/produk/data-produk.php">
+              <img src="../../image/list data produk.png" alt="Form Input Data Barang" style="width:157px">
+            </a>
+
+            <?php if ($_SESSION['level'] == 'Manager' || $_SESSION['level'] == 'SPV' || $_SESSION['level'] == 'Staff') { ?>
+              <a href="../../page/admin/sppbp/data-sppbp.php">
+                <img src="../../image/list data sppbp.png" alt="Form Input Data SPPBP" style="width:157px">
               </a>
+            <?php } ?>
 
-              <a href="../../page/admin/sppbp/form-input-data-sppbp1.php">
-                <img src="../../image/entry data sppbp.png" alt="Form Input Data SPPBP" style="width:157px">
-              </a>
-
+            <?php if ($_SESSION['level'] == 'Manager') { ?>
               <a href="../../page/admin/user/data-user.php">
                 <img src="../../image/list data user.png" alt="List Data User" style="width:157px">
               </a>
-
-              <a href="../../page/admin/supplier/form-entry-data-supplier.php">
-                <img src="../../image/Input Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/sppbp/list-data-sppbp.php">
-                <img src="../../image/list data sppbp.png" alt="List Data SPPBP" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/supplier/list-data-supplier.php">
-                <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-            <?php } else if ($_SESSION['level'] == 'SPV') { ?>
-
-              <a href="../../page/admin/sppbp/form-input-data-sppbp1.php">
-                <img src="../../image/entry data sppbp.png" alt="Form Input Data SPPBP" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/produk/data-produk.php">
-                <img src="../../image/list data produk.png" alt="List Data Barang" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/supplier/form-entry-data-supplier.php">
-                <img src="../../image/Input Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/sppbp/list-data-sppbp.php">
-                <img src="../../image/list data sppbp.png" alt="List Data SPPBP" style="width:157px">
-              </a>
-
-
-              <a href="../../page/admin/supplier/list-data-supplier.php">
-                <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/data-karyawan/data-karyawan.php">
-                <img src="../../image/list data karyawan.png" alt="List Data Karyawan" style="width:157px">
-              </a>
-
-            <?php } else if ($_SESSION['level'] == 'Designer') { ?>
-
-              <a href="../../page/admin/produk/data-produk.php">
-                <img src="../../image/list data produk.png" alt="Form Input Data Barang" style="width:157px">
-              </a>
-
-
-              <a href="../../page/admin/supplier/list-data-supplier.php">
-                <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-
-              <a href="../../page/admin/data-karyawan/data-karyawan.php">
-                <img src="../../image/list data karyawan.png" alt="List Data Karyawan" style="width:157px">
-              </a>
-
-            <?php } else if ($_SESSION['level'] == 'Staff') { ?>
-
-
-              <a href="../../page/admin/supplier/list-data-supplier.php">
-                <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-
-              <a href="../../page/admin/data-karyawan/data-karyawan.php">
-                <img src="../../image/list data karyawan.png" alt="List Data Karyawan" style="width:157px">
-              </a>
-
-
-              <a href="../../page/admin/produk/data-produk.php">
-                <img src="../../image/list data produk.png" alt="List Data Barang" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/sppbp/list-data-sppbp.php">
-                <img src="../../image/list data sppbp.png" alt="List Data SPPBP" style="width:157px">
-              </a>
-
-            <?php } else { ?>
-
-
-              <a href="../../page/admin/produk/data-produk.php">
-                <img src="../../image/list data produk.png" alt="List Data Barang" style="width:157px">
-              </a>
-
-
-
-              <a href="../../page/admin/data-karyawan/data-karyawan.php">
-                <img src="../../image/list data karyawan.png" alt="List Data Karyawan" style="width:157px">
-              </a>
-
-              <a href="../../page/admin/supplier/list-data-supplier.php">
-                <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
-              </a>
-
-
-
-
             <?php } ?>
 
-            <br><br><br>
-
-
+            <a href="../../page/admin/supplier/data-supplier.php">
+              <img src="../../image/List Data Supplier.png" alt="List Data User" style="width:157px">
+            </a>
 
           </div>
         </div>

@@ -1,10 +1,10 @@
 <?php
-error_reporting(0);
 session_start();
 if (!isset($_SESSION['user_id'])) {
   header("Location: index.php");
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +16,9 @@ if (!isset($_SESSION['user_id'])) {
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <title>PACKAGING DEVELOPMENT - <?php echo strtoupper($_SESSION['level']); ?></title>
-
+  <title>PACKAGING DEVELOPMENT</title>
   <style type="text/css">
     * {
       font-family: "Trebuchet MS";
@@ -53,10 +51,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="#page-top">PACKAGING DEVELOPMENT DEPARTMENT - LOGIN <?php echo strtoupper($_SESSION['level']); ?></a>
+      <a class="navbar-brand" href="#page-top">PACKAGING DEVELOPMENT DEPARTMENT</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,12 +69,12 @@ if (!isset($_SESSION['user_id'])) {
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="../../../../../guideline/GL ETICAL PRODUCT.pdf">PRODUK ETHICAL</a></li>
+              <li><a class="dropdown-item" href="../../../guideline/GL ETICAL PRODUCT.pdf">PRODUK ETHICAL</a></li>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="../../../../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
+              <li><a class="dropdown-item" href="../../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
             </ul>
           </li>
 
@@ -97,75 +94,49 @@ if (!isset($_SESSION['user_id'])) {
     </div>
   </nav>
 
+
+
   <div class="jumbotron">
     <div class="container">
       <br>
       <br><br><br>
       <img class="kiri" src="../../../image/logo combiphar ungu.png" width="250px" />
 
-      <h1 class="display-4">DATA KARYAWAN</h1>
-
+      <h1 class="display-4">DATA SUPPLIER</h1>
       <hr class="my-4">
-
       <!-- Modal Tambah-->
-      <div class="modal fade" id="modalTambahKaryawan" tabindex="-1" aria-labelledby="modalTambahKaryawanLabel" aria-hidden="true">
+      <div class="modal fade" id="modalTambahSupplier" tabindex="-1" aria-labelledby="modalTambahSupplierLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalTambahKaryawanLabel">Tambah karyawan</h5>
+              <h5 class="modal-title" id="modalTambahSupplierLabel">Tambah supplier</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="proses-entry-data-karyawan.php" method="POST">
+              <p class="text-center h3 fw-bolder">Silakan Masukkan Data Supplier</p>
+              <form action="proses-input-data-supplier.php" method="POST" enctype="multipart/form-data">
                 <div class="row mb-2">
                   <div class="col-md-12">
-                    <label for="nik">NIK</label>
-                    <input type="number" class="form-control" name="nik" id="nik" required>
+                    <label for="kd-supplier">Kode Supplier</label>
+                    <input type="text" class="form-control" name="kd-supplier" id="kd-supplier" required>
                   </div>
                 </div>
                 <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="nama_karyawan">Nama Karyawan</label>
-                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="example@combiphar.com" required>
+                  <div class="col-md-12">
+                    <label for="nama-supplier">Nama Supplier</label>
+                    <input type="text" class="form-control" name="nama-supplier" id="nama-supplier" required>
                   </div>
                 </div>
                 <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="tgl_lahir">Tanggal lahir</label>
-                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Gender</label>
-                    <div class="col-md-12">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="gender-laki" value="L" required>
-                        <label class="form-check-label" for="gender-laki">Laki-laki</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="gender-perempuan" value="P" required>
-                        <label class="form-check-label" for="gender-perempuan">Perempuan</label>
-                      </div>
-                    </div>
+                  <div class="col-md-12">
+                    <label for="tlp">No telepon</label>
+                    <input type="number" class="form-control" name="tlp" id="tlp" required>
                   </div>
                 </div>
                 <div class="row mb-2">
                   <div class="col-md-12">
                     <label for="alamat">Alamat</label>
-                    <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control"></textarea>
-                  </div>
-                </div>
-                <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="no_tlp">No telepon</label>
-                    <input type="number" class="form-control" name="no_tlp" id="no_tlp" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="jabatan">Jabatan</label>
-                    <input type="text" class="form-control" name="jabatan" id="jabatan" required>
+                    <textarea name="alamat" id="alamat" class="form-control" cols="30" rows="3"></textarea>
                   </div>
                 </div>
                 <div class="row mb-2">
@@ -180,65 +151,39 @@ if (!isset($_SESSION['user_id'])) {
         </div>
       </div>
 
-      <!-- Modal Update-->
-      <div class="modal fade" id="modalUpdateKaryawan" tabindex="-1" aria-labelledby="modalUpdateKaryawanLabel" aria-hidden="true">
+      <!-- Modal Update -->
+      <div class="modal fade" id="modalUpdateSupplier" tabindex="-1" aria-labelledby="modalUpdateSupplierLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalUpdateKaryawanLabel">Update karyawan</h5>
+              <h5 class="modal-title" id="modalUpdateSupplierLabel">Update supplier</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="proses-entry-data-karyawan.php" method="POST">
+              <p class="text-center h3 fw-bolder">Silakan Masukkan Data Supplier</p>
+              <form action="proses-input-data-supplier.php" method="POST" enctype="multipart/form-data">
                 <div class="row mb-2">
                   <div class="col-md-12">
-                    <label for="nik_edit">NIK</label>
-                    <input type="text" class="form-control" name="nik" id="nik_edit" required>
-                  </div>
-                </div>
-                <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="nama_karyawan_edit">Nama Karyawan</label>
-                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan_edit" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="email_edit">Email</label>
-                    <input type="email" class="form-control" name="email" id="email_edit" placeholder="example@combiphar.com" required>
-                  </div>
-                </div>
-                <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="tgl_lahir_edit">Tanggal lahir</label>
-                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir_edit" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Gender</label>
-                    <div class="col-md-12">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="gender-laki_edit" value="L" required>
-                        <label class="form-check-label" for="gender-laki_edit">Laki-laki</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="gender-perempuan_edit" value="P" required>
-                        <label class="form-check-label" for="gender-perempuan_edit">Perempuan</label>
-                      </div>
-                    </div>
+                    <label for="kd-supplier-edit">Kode Supplier</label>
+                    <input type="text" class="form-control" name="kd-supplier" id="kd-supplier-edit" readonly>
                   </div>
                 </div>
                 <div class="row mb-2">
                   <div class="col-md-12">
-                    <label for="alamat_edit">Alamat</label>
-                    <textarea name="alamat" id="alamat_edit" cols="30" rows="3" class="form-control"></textarea>
+                    <label for="nama-supplier-edit">Nama Supplier</label>
+                    <input type="text" class="form-control" name="nama-supplier" id="nama-supplier-edit" required>
                   </div>
                 </div>
                 <div class="row mb-2">
-                  <div class="col-md-6">
-                    <label for="no_tlp_edit">No telepon</label>
-                    <input type="number" class="form-control" name="no_tlp" id="no_tlp_edit" required>
+                  <div class="col-md-12">
+                    <label for="tlp-edit">No telepon</label>
+                    <input type="number" class="form-control" name="tlp" id="tlp-edit" required>
                   </div>
-                  <div class="col-md-6">
-                    <label for="jabatan_edit">Jabatan</label>
-                    <input type="text" class="form-control" name="jabatan" id="jabatan_edit" required>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-12">
+                    <label for="alamat-edit">Alamat</label>
+                    <textarea name="alamat" id="alamat-edit" class="form-control" cols="30" rows="3"></textarea>
                   </div>
                 </div>
                 <div class="row mb-2">
@@ -252,56 +197,57 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
       </div>
-
     </div>
-    <br>
   </div>
 
-
-  <!-- LIST DATA KARYAWAN -->
+  <!-- TABEL CARI PRODUK -->
 
   <div class="list-data">
     <div class="container">
       <div class="d-flex justify-content-between w-100 align-items-end">
         <div>
           <!-- Button trigger modal -->
-          <?php if ($_SESSION['level'] == "Manager") { ?>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahKaryawan">
-              Tambah karyawan
+          <?php if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") { ?>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahSupplier">
+              Tambah supplier
             </button>
+            <a href="../../admin/supplier/pdf-data-supplier.php" class="btn btn-secondary">Cetak Laporan</a>
           <?php } ?>
         </div>
-
         <div>
           <form method="GET">
-            <h2>Pencarian Data Karyawan</h2>
+            <label>Pencarian Supplier</label>
             <div class="input-group">
-              <input type="text" name="kata_cari" class="form-control" value="<?php if (isset($_GET['kata_cari'])) {
-                                                                                echo $_GET['kata_cari'];
-                                                                              } ?>" />
+              <input type="text" name="kata_cari" value="<?php if (isset($_GET['kata_cari'])) {
+                                                            echo $_GET['kata_cari'];
+                                                          } ?>" class="form-control" placeholder="Kata Pencarian" />
               <button class="btn btn-secondary input-group-text" type="submit">Cari</button>
             </div>
+          </form>
         </div>
-        </form>
       </div>
-      <div class="table-box mt-2">
+
+      <div class="table-box">
         <table>
+
           <thead>
             <tr>
               <th>No</th>
-              <th>NIK</th>
-              <th>Nama Karyawan</th>
-              <th>Jabatan</th>
-              <?php if ($_SESSION['level'] == "Manager") { ?>
+              <th>Kode Supplier</th>
+              <th>Nama Supplier</th>
+              <th>Alamat Supplier</th>
+              <th>No. Telepon</th>
+              <?php if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") { ?>
                 <th>Tindakan</th>
               <?php } ?>
             </tr>
           </thead>
-          <tbody>
 
+          <tbody>
             <?php
             include("../../../system/koneksi.php");
             $no_urut = 0;
+
             //jika kita klik cari, maka yang tampil query cari ini
             if (isset($_GET['kata_cari'])) {
               //menampung variabel kata_cari dari form pencarian
@@ -309,11 +255,13 @@ if (!isset($_SESSION['user_id'])) {
 
               //jika hanya ingin mencari berdasarkan kode_produk, silahkan hapus dari awal OR
               //jika ingin mencari 1 ketentuan saja query nya ini : SELECT * FROM produk WHERE kode_produk like '%".$kata_cari."%' 
-              $query = "SELECT * FROM tb_karyawan WHERE nik like '%" . $kata_cari . "%' OR nama_karyawan like '%" . $kata_cari . "%' OR jabatan like '%" . $kata_cari . "%' ORDER BY nik ASC";
+              $query = "SELECT * FROM tb_supplier WHERE kd_supplier like '%" . $kata_cari . "%' OR nama_supplier like '%" . $kata_cari . "%' OR kd_supplier like '%" . $kata_cari . "%' ORDER BY kd_supplier ASC";
             } else {
               //jika tidak ada pencarian, default yang dijalankan query ini
-              $query = "SELECT * FROM tb_karyawan ORDER BY nik ASC";
+              $query = "SELECT * FROM tb_supplier ORDER BY kd_supplier ASC";
             }
+
+
             $result = mysqli_query($db, $query);
 
             if (!$result) {
@@ -325,22 +273,22 @@ if (!isset($_SESSION['user_id'])) {
               $no_urut++;
               echo "<tr>";
               echo "<td>" . $no_urut . "</td>";
-              echo "<td>" . $row['nik'] . "</td>";
-              echo "<td>" . $row['nama_karyawan'] . "</td>";
-              echo "<td>" . $row['jabatan'] . "</td>";
-              if ($_SESSION['level'] == "Manager") {
+              echo "<td>" . $row['kd_supplier'] . "</td>";
+              echo "<td>" . $row['nama_supplier'] . "</td>";
+              echo "<td>" . $row['alamat_supplier'] . "</td>";
+              echo "<td>" . $row['no_telepon'] . "</td>";
+              if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") {
                 echo "<td>";
                 echo "<button class='btn btn-warning btn-sm me-2' data-item='" . json_encode($row) . "' onclick='updateData(this)'>Edit</button>";
-                echo "<a class='btn btn-danger btn-sm' href='proses-entry-data-karyawan.php?nik=" . $row['nik'] . "'onClick=\"return confirm('Anda yakin akan menghapus data ?')\">Hapus</a>";
+                echo "<a class='btn btn-danger btn-sm me-2' href='proses-input-data-supplier.php?kd_supplier=" . $row['kd_supplier'] . "' onClick=\"return confirm('Anda yakin akan menghapus data ?')\">Hapus</a>";
                 echo "</td>";
               }
               echo "</tr>";
             }
-
             if (mysqli_num_rows($result) == 0) {
             ?>
               <tr>
-                <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                <td colspan="6" class="text-center">Data tidak ditemukan</td>
               </tr>
             <?php
             }
@@ -352,6 +300,9 @@ if (!isset($_SESSION['user_id'])) {
   </div>
 
 
+
+
+
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -361,23 +312,12 @@ if (!isset($_SESSION['user_id'])) {
     function updateData(obj) {
       let item = $(obj).data('item');
 
-      document.getElementById('nik_edit').value = item.nik;
-      document.getElementById('nama_karyawan_edit').value = item.nama_karyawan;
-      document.getElementById('jabatan_edit').value = item.jabatan;
-      document.getElementById('email_edit').value = item.email;
-      document.getElementById('tgl_lahir_edit').value = item.tgl_lahir;
-      if (item.gender == 'L') {
-        document.getElementById('gender-laki_edit').checked = true;
-      } else if (item.gender == 'P') {
-        document.getElementById('gender-perempuan_edit').checked = true;
-      } else {
-        document.getElementById('gender-laki_edit').checked = false;
-        document.getElementById('gender-perempuan_edit').checked = false;
-      }
-      document.getElementById('alamat_edit').value = item.alamat;
-      document.getElementById('no_tlp_edit').value = item.no_telp;
+      document.getElementById('kd-supplier-edit').value = item.kd_supplier;
+      document.getElementById('nama-supplier-edit').value = item.nama_supplier;
+      document.getElementById('alamat-edit').value = item.alamat_supplier;
+      document.getElementById('tlp-edit').value = item.no_telepon;
 
-      $('#modalUpdateKaryawan').modal('show');
+      $('#modalUpdateSupplier').modal('show');
     }
   </script>
   <!-- Option 2: Separate Popper and Bootstrap JS -->
@@ -385,7 +325,6 @@ if (!isset($_SESSION['user_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     -->
-
 </body>
 
 </html>

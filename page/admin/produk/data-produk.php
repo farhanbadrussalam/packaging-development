@@ -79,7 +79,7 @@ include "../../../system/koneksi.php";
               </li>
               <li><a class="dropdown-item" href="../../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
             </ul>
-
+          </li>
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="../tentang.php">TENTANG</a>
@@ -89,12 +89,9 @@ include "../../../system/koneksi.php";
               AKUN
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../../../index.php" onclick="return confirm('Apakah anda yakin ingin melakukan Switch User ?')">Ganti User</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Keluar Aplikasi</a></li>
+              <li><a class="dropdown-item" href="../../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a></li>
             </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -220,7 +217,7 @@ include "../../../system/koneksi.php";
         </div>
       </div>
 
-      <!-- Modal Tambah-->
+      <!-- Modal Update-->
       <div class="modal fade" id="modalUpdateProduk" tabindex="-1" aria-labelledby="modalUpdateProdukLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -318,6 +315,7 @@ include "../../../system/koneksi.php";
                 <div class="row mb-2">
                   <div class="col-md-6">
                     <button class="btn btn-primary" type="submit" name="update">Update</button>
+                    <button class="btn btn-warning" type="reset">reset</button>
                   </div>
                 </div>
               </form>

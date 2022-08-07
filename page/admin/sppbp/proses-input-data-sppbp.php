@@ -1,17 +1,12 @@
-<?php  
+<?php
 include("../../../system/koneksi.php");
 
-if(isset($_POST['simpan']))
-{
+if (isset($_POST['simpan'])) {
 	//ambil data dari Form Input Data Produk
 	$kd = $_POST['kode-sppbp'];
 	$tgl = $_POST['tgl'];
 	$nik = $_POST['nik'];
-	$nama = $_POST['nama_karyawan'];
-	$jabatan = $_POST['jabatan'];
 	$kd_pdk = $_POST['kd_produk'];
-	$nm_pdk = $_POST['nama_produk'];
-	$kemas = $_POST['bahan_kemas'];
 	$suhu = $_POST['suhu'];
 	$metode = $_POST['metode'];
 	$bahan = $_POST['bahan'];
@@ -23,23 +18,18 @@ if(isset($_POST['simpan']))
 	$lockbottom = $_POST['lockbottom'];
 	$abrasi = $_POST['abrasi'];
 	$kondisi = $_POST['kondisi-pengemas'];
-	$prosedur = $_POST['prosedur'];	
-	$kdsup = $_POST['kd_supplier'];
+	$prosedur = $_POST['prosedur'];
 	$kritis = $_POST['kritis'];
 	$major = $_POST['major'];
 	$minor = $_POST['minor'];
-	
-	
+
+
 	//query save data ke database
 	$sql = "INSERT INTO tb_sppbp(
 	kd_sppbp, 
 	tanggal, 
 	nik, 
-	nama_karyawan, 
-	jabatan, 
 	kd_produk,
-	nama_produk, 
-	bahan_kemas, 
 	penyimpanan, 
 	metode_pemeriksaan, 
 	material, 
@@ -52,7 +42,6 @@ if(isset($_POST['simpan']))
 	abrasi_test, 
 	kondisi_pengemas, 
 	prosedur_pemeriksaan, 
-	kd_supplier, 
 	penyimpangan_kritis, 
 	penyimpangan_major, 
 	penyimpangan_minor
@@ -62,11 +51,7 @@ if(isset($_POST['simpan']))
 	'$kd',
 	'$tgl',
 	'$nik',
-	'$nama',
-	'$jabatan',
 	'$kd_pdk',
-	'$nm_pdk',
-	'$kemas',
 	'$suhu',
 	'$metode',
 	'$bahan',
@@ -79,7 +64,6 @@ if(isset($_POST['simpan']))
 	'$abrasi',
 	'$kondisi',
 	'$prosedur',
-	'$kdsup',
 	'$kritis',
 	'$major',
 	'$minor'
@@ -87,21 +71,82 @@ if(isset($_POST['simpan']))
 	$query = mysqli_query($db, $sql);
 
 	//pengecekan apakah query berhasil tersimpan?
-
-	if($query)
-	{
-		//jika berhasil
-		header('Location: list-data-sppbp.php?status=sukses');
-	}
-	else
-	{
+	if ($query) {
+		//jika berhasil alihkan ke halaman list-siswa.php
+		echo "<script>alert('Data Berhasil ditambah');document.location='data-sppbp.php'</script>";
+	} else {
 		//jika gagal
-		header('Location: form-input-data-sppbp1.php?status=gagal');
+		echo "<script>alert('Data Gagal ditambah.');document.location='form-input-data-sppbp.php'</script>";
 	}
-	}
-	else
-	{
-		die("Akses dilarang...!");
-	}
+} else if (isset($_POST['update'])) {
+	$kd = $_POST['kode-sppbp'];
+	$tgl = $_POST['tgl'];
+	$nik = $_POST['nik'];
+	$kd_pdk = $_POST['kd_produk'];
+	$suhu = $_POST['suhu'];
+	$metode = $_POST['metode'];
+	$bahan = $_POST['bahan'];
+	$tek = $_POST['tek'];
+	$warna = $_POST['wrn'];
+	$bobot = $_POST['bbt'];
+	$ukuran = $_POST['ukur'];
+	$lem = $_POST['lem'];
+	$lockbottom = $_POST['lockbottom'];
+	$abrasi = $_POST['abrasi'];
+	$kondisi = $_POST['kondisi-pengemas'];
+	$prosedur = $_POST['prosedur'];
+	$kritis = $_POST['kritis'];
+	$major = $_POST['major'];
+	$minor = $_POST['minor'];
 
-?>
+	$sql = "UPDATE tb_sppbp SET 
+	tanggal					='$tgl', 
+	nik 					='$nik', 
+	kd_produk 				='$kd_pdk',
+	penyimpanan 			='$suhu',
+	metode_pemeriksaan		='$metode',
+	material				='$bahan',
+	teks 					='$tek',
+	warna 					='$warna',
+	bobot 					='$bobot',
+	ukuran 					='$ukuran',
+	kerekatan_lem 			='$lem',
+	kondisi_lockbottom		='$lockbottom',
+	abrasi_test 			='$abrasi',
+	kondisi_pengemas 		='$kondisi',
+	prosedur_pemeriksaan 	='$prosedur',
+	penyimpangan_kritis 	='$kritis',
+	penyimpangan_major 		='$major',
+	penyimpangan_minor 		='$minor'
+	WHERE kd_sppbp='$kd'";
+
+	$query = mysqli_query($db, $sql);
+
+	//pengecekan apakah query berhasil tersimpan?
+	if ($query) {
+		//jika berhasil alihkan ke halaman list-siswa.php
+		echo "<script>alert('Data Berhasil diupdate');document.location='data-sppbp.php'</script>";
+	} else {
+		//jika gagal
+		echo "<script>alert('Data Gagal diupdate.');document.location='form-update-data-sppbp.php?kd_sppbp=" . $kd . "'</script>";
+	}
+} else if (isset($_GET['kd_sppbp'])) {
+
+	//ambil kode produk dari query string
+	$kde = $_GET['kd_sppbp'];
+
+	//buat query hapus
+
+	$sql = "DELETE FROM tb_sppbp WHERE kd_sppbp='$kde'";
+	$query = mysqli_query($db, $sql);
+
+	//apakah query hapus berhasil?
+
+	if ($query) {
+		//jika berhasil alihkan ke halaman list-siswa.php
+		echo "<script>alert('Data Berhasil dihapus');document.location='data-sppbp.php'</script>";
+	} else {
+		//jika gagal
+		echo "<script>alert('Data Gagal dihapus.');document.location='data-sppbp.php'</script>";
+	}
+}

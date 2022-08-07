@@ -81,7 +81,7 @@ include("../../../system/koneksi.php");
               </li>
               <li><a class="dropdown-item" href="../../../guideline/GL OTC 2020.pdf">PRODUK OTC</a></li>
             </ul>
-
+          </li>
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="../../../page/admin/tentang.php">TENTANG</a>
@@ -91,15 +91,11 @@ include("../../../system/koneksi.php");
               AKUN
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../../index.php">Ganti User</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="../../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Keluar Aplikasi</a></li>
+              <li><a class="dropdown-item" href="../../../system/logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a></li>
             </ul>
+          </li>
         </ul>
       </div>
-    </div>
     </div>
   </nav>
 
@@ -262,7 +258,6 @@ include("../../../system/koneksi.php");
             <th>NIK</th>
             <th>Nama user</th>
             <th>Level</th>
-            <th>Password</th>
             <?php if ($_SESSION['level'] == "Manager") { ?>
               <th>Tindakan</th>
             <?php } ?>
@@ -288,7 +283,6 @@ include("../../../system/koneksi.php");
             echo "<td>" . $user['nik'] . "</td>";
             echo "<td>" . $user['nama_karyawan'] . "</td>";
             echo "<td>" . $user['level'] . "</td>";
-            echo "<td>" . $user['pwd'] . "</td>";
             if ($_SESSION['level'] == "Manager") {
               echo "<td>";
               echo "<button class='btn btn-warning btn-sm me-2' data-item='" . json_encode($user) . "' onclick='updateData(this)'>Edit</button>";

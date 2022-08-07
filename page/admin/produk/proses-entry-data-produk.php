@@ -102,6 +102,6 @@ if (isset($_POST['simpan'])) {
 		echo "<script>alert('Data Berhasil dihapus');document.location='data-produk.php'</script>";
 	} else {
 		//jika gagal
-		echo "<script>alert('Data Gagal dihapu.');document.location='data-produk.php'</script>";
+		echo "<script>alert('Data Gagal dihapus.');document.location='data-produk.php'</script>";
 	}
 }
