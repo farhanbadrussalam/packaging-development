@@ -134,7 +134,7 @@ include("../../../system/koneksi.php");
                 <div class="row mb-2">
                   <div class="col-md-12">
                     <label for="nama_karyawan">Nama User</label>
-                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan" required>
+                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan" required readonly>
                   </div>
                 </div>
                 <div class="row mb-2">
@@ -190,7 +190,7 @@ include("../../../system/koneksi.php");
                 <div class="row mb-2">
                   <div class="col-md-12">
                     <label for="nama_karyawan_edit">Nama User</label>
-                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan_edit">
+                    <input type="text" class="form-control" name="nama_karyawan" id="nama_karyawan_edit" readonly required>
                   </div>
                 </div>
                 <div class="row mb-2">

@@ -119,7 +119,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
             <div class="col-md-4">
               <label for="bahan_kemas">Bahan Kemas</label>
-              <input type="text" id="bahan_kemas" class="form-control" readonly>
+              <input type="text" id="bahan_kemas" class="form-control" readonly required>
             </div>
           </div>
           <div class="row mb-2">
@@ -135,7 +135,7 @@ if (!isset($_SESSION['user_id'])) {
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="nik">NIK</label>
-              <input type="number" name="nik" id="nik" onkeyup="searchNIK(this.value)" class="form-control">
+              <input type="number" name="nik" id="nik" onkeyup="searchNIK(this.value)" class="form-control" required>
             </div>
             <div class="col-md-4">
               <label for="nama_karyawan">Nama Karyawan</label>
@@ -149,45 +149,45 @@ if (!isset($_SESSION['user_id'])) {
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="suhu">Suhu Simpan</label>
-              <input type="text" name="suhu" id="suhu" class="form-control" placeholder="Masukan Suhu Simpan">
+              <input type="text" name="suhu" id="suhu" class="form-control" placeholder="Masukan Suhu Simpan" required>
             </div>
             <div class="col-md-4">
               <label for="metode">Metode Pemeriksaan</label>
-              <input type="text" name="metode" id="metode" class="form-control" placeholder="Masukan Jenis Metode">
+              <input type="text" name="metode" id="metode" class="form-control" placeholder="Masukan Jenis Metode" required>
             </div>
             <div class="col-md-4">
               <label for="bahan">Material</label>
-              <input type="text" name="bahan" id="bahan" class="form-control" placeholder="Masukan Jeniis Material">
+              <input type="text" name="bahan" id="bahan" class="form-control" placeholder="Masukan Jeniis Material" required>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="teks">Teks</label>
-              <input type="text" name="tek" id="teks" class="form-control" placeholder="Masukan Teks">
+              <input type="text" name="tek" id="teks" class="form-control" placeholder="Masukan Teks" required>
             </div>
             <div class="col-md-4">
               <label for="warna">Warna</label>
-              <input type="text" name="wrn" id="warna" class="form-control" placeholder="Masukan Warna">
+              <input type="text" name="wrn" id="warna" class="form-control" placeholder="Masukan Warna" required>
             </div>
             <div class="col-md-4">
               <label for="bobot">Bobot</label>
-              <input type="text" name="bbt" id="bobot" class="form-control" placeholder="Masukan Bobot">
+              <input type="text" name="bbt" id="bobot" class="form-control" placeholder="Masukan Bobot" required>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="ukuran">Ukuran</label>
-              <input type="text" name="ukur" id="ukuran" class="form-control" placeholder="Masukan Ukuran">
+              <input type="text" name="ukur" id="ukuran" class="form-control" placeholder="Masukan Ukuran" required>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="abrasi">Abrasi test</label>
-              <input type="text" name="abrasi" id="abrasi" class="form-control" placeholder="Masukan hasil test">
+              <input type="text" name="abrasi" id="abrasi" class="form-control" placeholder="Masukan hasil test" required>
             </div>
             <div class="col-md-4">
               <label for="prosedur">Prosedur Pemeriksaan</label>
-              <input type="text" name="prosedur" id="prosedur" class="form-control" placeholder="Masukan Prosedur">
+              <input type="text" name="prosedur" id="prosedur" class="form-control" placeholder="Masukan Prosedur" required>
             </div>
             <div class="col-md-4">
               <label for="kondisi-pengemas">Kondisi Pengemas</label>
@@ -197,15 +197,15 @@ if (!isset($_SESSION['user_id'])) {
           <div class="row mb-2">
             <div class="col-md-4">
               <label for="kritis">Penyimpangan Kritis</label>
-              <input type="text" name="kritis" id="kritis" class="form-control" placeholder="Masukan Penyimpangan Kritis">
+              <input type="text" name="kritis" id="kritis" class="form-control" placeholder="Masukan Penyimpangan Kritis" required>
             </div>
             <div class="col-md-4">
               <label for="major">Penyimpangan Major</label>
-              <input type="text" name="major" id="major" class="form-control" placeholder="Masukan Penyimpangan Major">
+              <input type="text" name="major" id="major" class="form-control" placeholder="Masukan Penyimpangan Major" required>
             </div>
             <div class="col-md-4">
               <label for="minor">Penyimpangan Minor</label>
-              <input type="text" name="minor" id="minor" class="form-control" placeholder="Masukan Penyimpangan Minor">
+              <input type="text" name="minor" id="minor" class="form-control" placeholder="Masukan Penyimpangan Minor" required>
             </div>
           </div>
           <div class="row mb-2">
