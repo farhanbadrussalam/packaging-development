@@ -55,13 +55,62 @@ $pdf->SetFont('Arial', '', 7);
 include("../../../system/koneksi.php");
 $produk = mysqli_query($db, "SELECT tb_produk.*, tb_sppbp.kd_sppbp FROM tb_produk LEFT JOIN tb_sppbp ON tb_sppbp.kd_produk = tb_produk.kd_produk");
 while ($row = mysqli_fetch_array($produk)) {
-    $pdf->Cell(26, 6, $row['kd_produk'], 1, 0);
-    $pdf->Cell(35, 6, $row['nama_produk'], 1, 0);
-    $pdf->Cell(30, 6, $row['bentuk_sediaan'], 1, 0);
-    $pdf->Cell(26, 6, $row['kategori_produk'], 1, 0);
-    $pdf->Cell(28, 6, $row['bahan_kemas'], 1, 0);
-    $pdf->Cell(25, 6, $row['kd_supplier'], 1, 0);
-    $pdf->Cell(25, 6, $row['kd_sppbp'], 1, 1);
+    $cellWidth = 35; // lebar sel
+    $cellHeight = 5; // tinggi sel satu baris normal
+
+    // Periksa apakah teks melebihi kolom
+    if ($pdf->GetStringWidth($row['nama_produk']) < $cellWidth) {
+        //jika tidak, maka tidak melakukan apa-apa
+        $line = 1;
+    } else {
+        //jika ya, maka hitung ketinggian yang dibutuhkan untuk sel akan dirapikan
+        //dengan memisahkan teks agar sesuai dengan lebar sel
+        //lalu hitung berapa banyak baris yang dibutuhkan agar teks pas dengan sel
+
+        $textLength = strlen($row['nama_produk']);    //total panjang teks
+        $errMargin = 5;        //margin kesalahan lebar sel, untuk jaga-jaga
+        $startChar = 0;        //posisi awal karakter untuk setiap baris
+        $maxChar = 0;            //karakter maksimum dalam satu baris, yang akan ditambahkan nanti
+        $textArray = array();    //untuk menampung data untuk setiap baris
+        $tmpString = "";        //untuk menampung teks untuk setiap baris (sementara)
+
+        while ($startChar < $textLength) { //perulangan sampai akhir teks
+            //perulangan sampai karakter maksimum tercapai
+            while (
+                $pdf->GetStringWidth($tmpString) < ($cellWidth - $errMargin) &&
+                ($startChar + $maxChar) < $textLength
+            ) {
+                $maxChar++;
+                $tmpString = substr($row['nama_produk'], $startChar, $maxChar);
+            }
+            //pindahkan ke baris berikutnya
+            $startChar = $startChar + $maxChar;
+            //kemudian tambahkan ke dalam array sehingga kita tahu berapa banyak baris yang dibutuhkan
+            array_push($textArray, $tmpString);
+            //reset variabel penampung
+            $maxChar = 0;
+            $tmpString = '';
+        }
+        //dapatkan jumlah baris
+        $line = count($textArray);
+    }
+    $pdf->Cell(26, ($line * $cellHeight), $row['kd_produk'], 1, 0);
+
+    //memanfaatkan MultiCell sebagai ganti Cell
+    //atur posisi xy untuk sel berikutnya menjadi di sebelahnya.
+    //ingat posisi x dan y sebelum menulis MultiCell
+    $xPos = $pdf->GetX();
+    $yPos = $pdf->GetY();
+    $pdf->MultiCell($cellWidth, $cellHeight, $row['nama_produk'], 1, 'L', 0);
+    //kembalikan posisi untuk sel berikutnya di samping MultiCell 
+    //dan offset x dengan lebar MultiCell
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+
+    $pdf->Cell(30, ($line * $cellHeight), $row['bentuk_sediaan'], 1, 0);
+    $pdf->Cell(26, ($line * $cellHeight), $row['kategori_produk'], 1, 0);
+    $pdf->Cell(28, ($line * $cellHeight), $row['bahan_kemas'], 1, 0);
+    $pdf->Cell(25, ($line * $cellHeight), $row['kd_supplier'], 1, 0);
+    $pdf->Cell(25, ($line * $cellHeight), $row['kd_sppbp'], 1, 1);
 }
 
 $pdf->Output();
