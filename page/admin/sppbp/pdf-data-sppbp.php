@@ -4,30 +4,25 @@ use setasign\Fpdi\Fpdi;
 
 include('../../../fpdf.php');
 include('../../../vendor/fpdi/autoload.php');
-
-class PDF extends FPDF
-{
-    // Page header
-
-}
-
 class ConcatPdf extends Fpdi
 {
     public $files = array();
 
     function Header()
     {
-        // Logo
-        $this->Image('../../../image/logo combiphar ungu.png', 165, 8, 30);
-        // Arial bold 15
-        $this->SetFont('Arial', 'B', 15);
-        $this->Ln(8);
-        // Move to the right
-        $this->Cell(85);
-        // Title
-        $this->Cell(20, 10, 'RESEARCH & DEVELOPMENT DEPARTMENT', 0, 0, 'C');
-        // Line break
-        $this->Ln(10);
+        if ($this->PageNo() == 1) {
+            // Logo
+            $this->Image('../../../image/logo combiphar ungu.png', 165, 8, 30);
+            // Arial bold 15
+            $this->SetFont('Arial', 'B', 15);
+            $this->Ln(8);
+            // Move to the right
+            $this->Cell(85);
+            // Title
+            $this->Cell(20, 10, 'RESEARCH & DEVELOPMENT DEPARTMENT', 0, 0, 'C');
+            // Line break
+            $this->Ln(10);
+        }
     }
 
     // Page footer
