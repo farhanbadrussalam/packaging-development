@@ -96,7 +96,7 @@ $dtSppbp = mysqli_fetch_assoc($query);
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="kd-produk">Kode Produk</label>
-							<input type="text" name="kd_produk" id="kd-produk" value="<?= $dtSppbp['kd_produk'] ?>" onkeyup="searchProduk(this)" class="form-control">
+							<input type="text" name="kd_produk" id="kd-produk" value="<?= $dtSppbp['kd_produk'] ?>" onkeyup="searchProduk(this)" class="form-control" readonly>
 						</div>
 						<div class="col-md-4">
 							<label for="nama_produk">Nama Produk</label>
@@ -120,7 +120,7 @@ $dtSppbp = mysqli_fetch_assoc($query);
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="nik">NIK</label>
-							<input type="number" name="nik" id="nik" onkeyup="searchNIK(this)" value="<?= $dtSppbp['nik'] ?>" class="form-control">
+							<input type="number" name="nik" id="nik" onkeyup="searchNIK(this)" value="<?= $dtSppbp['nik'] ?>" class="form-control" readonly>
 						</div>
 						<div class="col-md-4">
 							<label for="nama_karyawan">Nama Karyawan</label>
@@ -134,63 +134,63 @@ $dtSppbp = mysqli_fetch_assoc($query);
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="suhu">Suhu Simpan</label>
-							<input type="text" name="suhu" id="suhu" class="form-control" value="<?= $dtSppbp['penyimpanan'] ?>" placeholder="Masukan Suhu Simpan">
+							<input type="text" name="suhu" id="suhu" class="form-control" value="<?= $dtSppbp['penyimpanan'] ?>" placeholder="Masukan Suhu Simpan" required>
 						</div>
 						<div class="col-md-4">
 							<label for="metode">Metode Pemeriksaan</label>
-							<input type="text" name="metode" id="metode" class="form-control" value="<?= $dtSppbp['metode_pemeriksaan'] ?>" placeholder="Masukan Jenis Metode">
+							<input type="text" name="metode" id="metode" class="form-control" value="<?= $dtSppbp['metode_pemeriksaan'] ?>" placeholder="Masukan Jenis Metode" required>
 						</div>
 						<div class="col-md-4">
 							<label for="bahan">Material</label>
-							<input type="text" name="bahan" id="bahan" class="form-control" value="<?= $dtSppbp['material'] ?>" placeholder="Masukan Jeniis Material">
+							<input type="text" name="bahan" id="bahan" class="form-control" value="<?= $dtSppbp['material'] ?>" placeholder="Masukan Jeniis Material" required>
 						</div>
 					</div>
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="teks">Teks</label>
-							<input type="text" name="tek" id="teks" class="form-control" value="<?= $dtSppbp['teks'] ?>" placeholder="Masukan Teks">
+							<input type="text" name="tek" id="teks" class="form-control" value="<?= $dtSppbp['teks'] ?>" placeholder="Masukan Teks" required>
 						</div>
 						<div class="col-md-4">
 							<label for="warna">Warna</label>
-							<input type="text" name="wrn" id="warna" class="form-control" value="<?= $dtSppbp['warna'] ?>" placeholder="Masukan Warna">
+							<input type="text" name="wrn" id="warna" class="form-control" value="<?= $dtSppbp['warna'] ?>" placeholder="Masukan Warna" required>
 						</div>
 						<div class="col-md-4">
 							<label for="bobot">Bobot</label>
-							<input type="text" name="bbt" id="bobot" class="form-control" value="<?= $dtSppbp['bobot'] ?>" placeholder="Masukan Bobot">
+							<input type="text" name="bbt" id="bobot" class="form-control" value="<?= $dtSppbp['bobot'] ?>" placeholder="Masukan Bobot" required>
 						</div>
 					</div>
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="ukuran">Ukuran</label>
-							<input type="text" name="ukur" id="ukuran" class="form-control" value="<?= $dtSppbp['ukuran'] ?>" placeholder="Masukan Ukuran">
+							<input type="text" name="ukur" id="ukuran" class="form-control" value="<?= $dtSppbp['ukuran'] ?>" placeholder="Masukan Ukuran" required>
 						</div>
 					</div>
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="abrasi">Abrasi test</label>
-							<input type="text" name="abrasi" id="abrasi" class="form-control" value="<?= $dtSppbp['abrasi_test'] ?>" placeholder="Masukan hasil test">
+							<input type="text" name="abrasi" id="abrasi" class="form-control" value="<?= $dtSppbp['abrasi_test'] ?>" placeholder="Masukan hasil test" required>
 						</div>
 						<div class="col-md-4">
 							<label for="prosedur">Prosedur Pemeriksaan</label>
-							<input type="text" name="prosedur" id="prosedur" class="form-control" value="<?= $dtSppbp['prosedur_pemeriksaan'] ?>" placeholder="Masukan Prosedur">
+							<input type="text" name="prosedur" id="prosedur" class="form-control" value="<?= $dtSppbp['prosedur_pemeriksaan'] ?>" placeholder="Masukan Prosedur" required>
 						</div>
 						<div class="col-md-4">
 							<label for="kondisi-pengemas">Kondisi Pengemas</label>
-							<textarea name="kondisi-pengemas" id="kondisi-pengemas" cols="30" rows="3" class="form-control"><?= $dtSppbp['kondisi_pengemas'] ?></textarea>
+							<textarea name="kondisi-pengemas" id="kondisi-pengemas" cols="30" rows="3" class="form-control" required><?= $dtSppbp['kondisi_pengemas'] ?></textarea>
 						</div>
 					</div>
 					<div class="row mb-2">
 						<div class="col-md-4">
 							<label for="kritis">Penyimpangan Kritis</label>
-							<input type="text" name="kritis" id="kritis" class="form-control" value="<?= $dtSppbp['penyimpangan_kritis'] ?>" placeholder="Masukan Penyimpangan Kritis">
+							<input type="text" name="kritis" id="kritis" class="form-control" value="<?= $dtSppbp['penyimpangan_kritis'] ?>" placeholder="Masukan Penyimpangan Kritis" required>
 						</div>
 						<div class="col-md-4">
 							<label for="major">Penyimpangan Major</label>
-							<input type="text" name="major" id="major" class="form-control" value="<?= $dtSppbp['penyimpangan_major'] ?>" placeholder="Masukan Penyimpangan Major">
+							<input type="text" name="major" id="major" class="form-control" value="<?= $dtSppbp['penyimpangan_major'] ?>" placeholder="Masukan Penyimpangan Major" required>
 						</div>
 						<div class="col-md-4">
 							<label for="minor">Penyimpangan Minor</label>
-							<input type="text" name="minor" id="minor" class="form-control" value="<?= $dtSppbp['penyimpangan_minor'] ?>" placeholder="Masukan Penyimpangan Minor">
+							<input type="text" name="minor" id="minor" class="form-control" value="<?= $dtSppbp['penyimpangan_minor'] ?>" placeholder="Masukan Penyimpangan Minor" required>
 						</div>
 					</div>
 					<div class="row mb-2">
