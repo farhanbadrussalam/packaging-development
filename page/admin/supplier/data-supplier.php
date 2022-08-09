@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id'])) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <title>PACKAGING DEVELOPMENT</title>
+  <title>PACKAGING DEVELOPMENT - <?php echo strtoupper($_SESSION['level']); ?></title>
   <style type="text/css">
     * {
       font-family: "Trebuchet MS";
@@ -53,7 +53,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="#page-top">PACKAGING DEVELOPMENT DEPARTMENT</a>
+      <a class="navbar-brand" href="#page-top">PACKAGING DEVELOPMENT DEPARTMENT - LOGIN <?php echo strtoupper($_SESSION['level']); ?></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -129,7 +129,13 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div class="row mb-2">
                   <div class="col-md-12">
-                    <label for="tlp">No telepon</label>
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="example@masterlabel.com" required>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-12">
+                    <label for="tlp">Contact PIC</label>
                     <input type="number" class="form-control" name="tlp" id="tlp" required>
                   </div>
                 </div>
@@ -176,7 +182,13 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div class="row mb-2">
                   <div class="col-md-12">
-                    <label for="tlp-edit">No telepon</label>
+                    <label for="email-edit">Email</label>
+                    <input type="email" class="form-control" name="email" id="email-edit" required>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-12">
+                    <label for="tlp-edit">Contact PIC</label>
                     <input type="number" class="form-control" name="tlp" id="tlp-edit" required>
                   </div>
                 </div>
@@ -235,6 +247,7 @@ if (!isset($_SESSION['user_id'])) {
               <th>No</th>
               <th>Kode Supplier</th>
               <th>Nama Supplier</th>
+              <th>Email</th>
               <th>Alamat Supplier</th>
               <th>No. Telepon</th>
               <?php if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") { ?>
@@ -275,6 +288,7 @@ if (!isset($_SESSION['user_id'])) {
               echo "<td>" . $no_urut . "</td>";
               echo "<td>" . $row['kd_supplier'] . "</td>";
               echo "<td>" . $row['nama_supplier'] . "</td>";
+              echo "<td>" . $row['email'] . "</td>";
               echo "<td>" . $row['alamat_supplier'] . "</td>";
               echo "<td>" . $row['no_telepon'] . "</td>";
               if ($_SESSION['level'] == "Manager" || $_SESSION['level'] == "SPV") {
@@ -314,6 +328,7 @@ if (!isset($_SESSION['user_id'])) {
 
       document.getElementById('kd-supplier-edit').value = item.kd_supplier;
       document.getElementById('nama-supplier-edit').value = item.nama_supplier;
+      document.getElementById('email-edit').value = item.email;
       document.getElementById('alamat-edit').value = item.alamat_supplier;
       document.getElementById('tlp-edit').value = item.no_telepon;
 

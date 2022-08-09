@@ -5,12 +5,13 @@ if (isset($_POST['simpan'])) {
 	//ambil data dari Form Input Data Produk
 	$id = $_POST['kd-supplier'];
 	$nama = $_POST['nama-supplier'];
+	$email = $_POST['email'];
 	$alamat = $_POST['alamat'];
 	$tlp = $_POST['tlp'];
 
 
 	//query save data ke database
-	$sql = "INSERT INTO tb_supplier (kd_supplier, nama_supplier, alamat_supplier, no_telepon) VALUES ('$id','$nama','$alamat','$tlp')";
+	$sql = "INSERT INTO tb_supplier (kd_supplier, nama_supplier, alamat_supplier, no_telepon, email) VALUES ('$id','$nama','$alamat','$tlp','$email')";
 	$query = mysqli_query($db, $sql);
 
 	//pengecekan apakah query berhasil tersimpan?
@@ -28,9 +29,10 @@ if (isset($_POST['simpan'])) {
 	$nm = $_POST['nama-supplier'];
 	$alamat = $_POST['alamat'];
 	$tlp = $_POST['tlp'];
+	$email = $_POST['email'];
 
 	//buat query update
-	$sql = "UPDATE tb_supplier SET nama_supplier='$nm', alamat_supplier='$alamat', no_telepon='$tlp' WHERE kd_supplier='$kd'";
+	$sql = "UPDATE tb_supplier SET nama_supplier='$nm', email='$email', alamat_supplier='$alamat', no_telepon='$tlp' WHERE kd_supplier='$kd'";
 	$query = mysqli_query($db, $sql);
 
 	if ($query) {
